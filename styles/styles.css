@@ -1,0 +1,16 @@
+:root {
+  --navy: #001050;
+  --white: #eef4ff;
+  --black: #223741;}
+
+body, h1, p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Raleway', 'M PLUS 1p', sans-serif;
+  font-size: 12pt;
+  background-color: var(--white);
+  color: var(--black);
+}
