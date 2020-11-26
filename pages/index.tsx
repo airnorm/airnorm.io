@@ -1,11 +1,6 @@
 import Layout from '../components/Layout'
 
-
-type ServerSideProps = {
-  props: Props,
-}
-
-const IndexPage: React.FC<Props> = ({devices}) => (
+const IndexPage = () => (
   <Layout>
     <h1>Project AIRNORM</h1>
     <p>
