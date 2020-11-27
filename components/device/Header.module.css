@@ -1,0 +1,11 @@
+.device > img {
+  width: 100vw;
+  height: calc(100vw * 0.75);
+  object-fit: cover;
+}
+
+.description {
+}
+
+.url {
+}

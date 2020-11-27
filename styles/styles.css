@@ -14,3 +14,7 @@ body {
   background-color: var(--white);
   color: var(--black);
 }
+
+p {
+  word-break: break-all;
+}

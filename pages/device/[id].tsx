@@ -2,6 +2,7 @@ import {GetServerSideProps} from 'next'
 import Layout from '../../components/Layout'
 import {req} from '../../lib/req'
 import fm from 'front-matter'
+import Header from '../../components/device/Header'
 
 type Props = {
   name: string,
@@ -19,14 +20,12 @@ const Device: React.FC<Props> = ({name, attributes, description, latestPlot}) =>
 
   return (
     <Layout title={`device "${name}"`}>
+      <Header deviceName={name} description={description} headerImage={attributes.headerImage} url={attributes.url} />
       <h1>
         {name}
       </h1>
       <p>
-        {attributes.url}
-        {attributes.headerImage}
         {description}
-        {latestPlot}
       </p>
     </Layout>
   )
