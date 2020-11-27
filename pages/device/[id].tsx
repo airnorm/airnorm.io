@@ -1,22 +1,32 @@
 import {GetServerSideProps} from 'next'
 import Layout from '../../components/Layout'
 import {req} from '../../lib/req'
+import fm from 'front-matter'
 
 type Props = {
-  id: string,
+  name: string,
+  attributes: Attributes,
   description: string,
+  latestPlot: string,
 }
 
+type Attributes = {
+  headerImage: string,
+  url: string,
+}
 
-const Device: React.FC<Props> = ({id, description}) => {
+const Device: React.FC<Props> = ({name, attributes, description, latestPlot}) => {
 
   return (
-    <Layout title={`device "${id}"`}>
+    <Layout title={`device "${name}"`}>
       <h1>
-        Device: {id}
+        {name}
       </h1>
       <p>
+        {attributes.url}
+        {attributes.headerImage}
         {description}
+        {latestPlot}
       </p>
     </Layout>
   )
@@ -24,17 +34,16 @@ const Device: React.FC<Props> = ({id, description}) => {
 
 export const getServerSideProps: GetServerSideProps = async(ctx) => {
   let { id } = ctx.query
-  //if (typeof id !== 'string') {
-  //  id = id[0]
-  //}
-  let result: any
+  let deviceMeta: any
+  let photoMeta: any
   try {
-    result = await req<any>(`https://${process.env.API_HOST}/api/devices/${id}?token=${process.env.API_TOKEN}`)
+    deviceMeta = await req<any>(`https://${process.env.API_HOST}/api/devices/${id}?token=${process.env.API_TOKEN}`)
+    photoMeta = await req<any>(`https://${process.env.API_HOST}/api/devices/${id}/photos?sort=-createdAt&token=${process.env.API_TOKEN}`)
   } catch(e) {
-    console.log(e)
     return {notFound: true}
   }
-  return {props: {id: result.id, description: result.description}}
+  const content = fm(deviceMeta.description)
+  return {props: {name: deviceMeta.name, attributes: content.attributes, description: content.body, latestPlot: photoMeta.entities[0].url}}
 }
 
 export default Device
