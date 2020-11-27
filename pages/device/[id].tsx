@@ -3,6 +3,7 @@ import Layout from '../../components/Layout'
 import {req} from '../../lib/req'
 import fm from 'front-matter'
 import Header from '../../components/device/Header'
+import Plot from '../../components/device/Plot'
 
 type Props = {
   name: string,
@@ -21,12 +22,12 @@ const Device: React.FC<Props> = ({name, attributes, description, latestPlot}) =>
   return (
     <Layout title={`device "${name}"`}>
       <Header deviceName={name} description={description} headerImage={attributes.headerImage} url={attributes.url} />
-      <h1>
-        {name}
-      </h1>
-      <p>
-        {description}
-      </p>
+      <main>
+        <Plot plot={latestPlot} />
+        <p>
+          <a href="https://scrapbox.io/realglobe/Project_AIRNORM">Project AIRNORM について</a>
+        </p>
+      </main>
     </Layout>
   )
 }

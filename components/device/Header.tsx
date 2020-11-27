@@ -10,7 +10,7 @@ type Props = {
 const Header: React.FC<Props> = ({deviceName, description, headerImage, url}) => {
   return (
     <header className={styles.device}>
-      <img src={headerImage} alt="header image" />
+    {headerImage && <img src={headerImage} alt="header image" />}
       <div>
         <h1>
           {deviceName}
