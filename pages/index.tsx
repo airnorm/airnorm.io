@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 
-const IndexPage = () => (
+const IndexPage= () => (
   <Layout>
     <h1>Project AIRNORM</h1>
     <p>
